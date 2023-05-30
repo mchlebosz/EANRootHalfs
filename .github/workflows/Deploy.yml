@@ -31,15 +31,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Check directory
+        run: ls -l
+        
       - name: Generate Docs
         uses: mattnotmitt/doxygen-action@v1.9.5
         with:
             additional-packages: font-fira-code
             working-directory: './.'
             doxyfile-path: './Doxygen'
-            
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
