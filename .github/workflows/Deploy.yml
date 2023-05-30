@@ -37,7 +37,6 @@ jobs:
       - name: Generate Docs
         uses: mattnotmitt/doxygen-action@v1.9.5
         with:
-            additional-packages: font-fira-code
             working-directory: './.'
             doxyfile-path: './Doxyfile'
       - name: Setup Pages
