@@ -1,5 +1,10 @@
 .vscode
 
+//doxygen
+html
+latex
+docs
+
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles

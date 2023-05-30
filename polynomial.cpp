@@ -1,14 +1,14 @@
 #include "polynomial.h"
 #include "bisection.h"
 
-wxBEGIN_EVENT_TABLE(BisectionPolynomial, wxPanel)
-    EVT_BUTTON(wxID_ANY, BisectionPolynomial::OnAddButtonClick)
-    EVT_BUTTON(wxID_ANY, BisectionPolynomial::OnRemoveButtonClick)
-    EVT_BUTTON(wxID_ANY, BisectionPolynomial::OnSaveButtonClick)
-    EVT_BUTTON(wxID_ANY, BisectionPolynomial::OnCalculateButtonClick)
+wxBEGIN_EVENT_TABLE(Polynomial, wxPanel)
+    EVT_BUTTON(wxID_ANY, Polynomial::OnAddButtonClick)
+    EVT_BUTTON(wxID_ANY, Polynomial::OnRemoveButtonClick)
+    EVT_BUTTON(wxID_ANY, Polynomial::OnSaveButtonClick)
+    EVT_BUTTON(wxID_ANY, Polynomial::OnCalculateButtonClick)
 wxEND_EVENT_TABLE()
 
-BisectionPolynomial::BisectionPolynomial(wxWindow* parent) : wxPanel(parent, wxID_ANY)
+Polynomial::Polynomial(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
     // Create the section title for "f(x) = "
@@ -40,9 +40,9 @@ BisectionPolynomial::BisectionPolynomial(wxWindow* parent) : wxPanel(parent, wxI
     SetSizerAndFit(mainSizer);
 
     // Bind button events
-    addButton->Bind(wxEVT_BUTTON, &BisectionPolynomial::OnAddButtonClick, this);
-    removeButton->Bind(wxEVT_BUTTON, &BisectionPolynomial::OnRemoveButtonClick, this);
-    saveButton->Bind(wxEVT_BUTTON, &BisectionPolynomial::OnSaveButtonClick, this);
+    addButton->Bind(wxEVT_BUTTON, &Polynomial::OnAddButtonClick, this);
+    removeButton->Bind(wxEVT_BUTTON, &Polynomial::OnRemoveButtonClick, this);
+    saveButton->Bind(wxEVT_BUTTON, &Polynomial::OnSaveButtonClick, this);
 
     // Create initial input fields
     for (int i = 0; i < 3; ++i)
@@ -66,7 +66,7 @@ BisectionPolynomial::BisectionPolynomial(wxWindow* parent) : wxPanel(parent, wxI
     
     wxBoxSizer* paramInput = new wxBoxSizer(wxVERTICAL);
     calculateButton = new wxButton(this, wxID_ANY, "Calculate");
-    calculateButton->Bind(wxEVT_BUTTON, &BisectionPolynomial::OnCalculateButtonClick, this);
+    calculateButton->Bind(wxEVT_BUTTON, &Polynomial::OnCalculateButtonClick, this);
     //input for a,b, epsilon
     wxStaticText* aLabel = new wxStaticText(this, wxID_ANY, "a = ", wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
     wxStaticText* bLabel = new wxStaticText(this, wxID_ANY, "b = ", wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
@@ -103,7 +103,7 @@ BisectionPolynomial::BisectionPolynomial(wxWindow* parent) : wxPanel(parent, wxI
 }
 
 //destructor
-BisectionPolynomial::~BisectionPolynomial()
+Polynomial::~Polynomial()
 {
     delete aInput;
     delete bInput;
@@ -119,17 +119,17 @@ BisectionPolynomial::~BisectionPolynomial()
 
 }
 
-void BisectionPolynomial::OnAddButtonClick(wxCommandEvent& event)
+void Polynomial::OnAddButtonClick(wxCommandEvent& event)
 {
     AddInputField();
 }
 
 
-void BisectionPolynomial::OnSaveButtonClick(wxCommandEvent& event)
+void Polynomial::OnSaveButtonClick(wxCommandEvent& event)
 {
     Save();
 }
-void BisectionPolynomial::OnCalculateButtonClick(wxCommandEvent& event)
+void Polynomial::OnCalculateButtonClick(wxCommandEvent& event)
 {
     Save();
     //check if a,b,epsilon are numbers
@@ -148,7 +148,7 @@ void BisectionPolynomial::OnCalculateButtonClick(wxCommandEvent& event)
     Calculate();
 }
 
-void BisectionPolynomial::AddInputField()
+void Polynomial::AddInputField()
 {
     int power = textCtrls.size();
 
@@ -174,7 +174,7 @@ void BisectionPolynomial::AddInputField()
     Layout();
 }
 
-void BisectionPolynomial::RemoveInputField()
+void Polynomial::RemoveInputField()
 {
      if (textCtrls.size() > 1)
     {
@@ -193,12 +193,12 @@ void BisectionPolynomial::RemoveInputField()
     Layout();
 }
 
-void BisectionPolynomial::OnRemoveButtonClick(wxCommandEvent& event)
+void Polynomial::OnRemoveButtonClick(wxCommandEvent& event)
 {
     RemoveInputField();   
 }
 
-void BisectionPolynomial::InputToVector()
+void Polynomial::InputToVector()
 {
 
 
@@ -215,7 +215,7 @@ void BisectionPolynomial::InputToVector()
 
 }
 
-void BisectionPolynomial::ShowEquation()
+void Polynomial::ShowEquation()
 {
     wxString equation = "f(x) = ";
     
@@ -256,7 +256,7 @@ void BisectionPolynomial::ShowEquation()
     Layout();
 }
 
-void BisectionPolynomial::Save()
+void Polynomial::Save()
 {
     
     //fill all textCtrls with 0 if empty
@@ -274,7 +274,7 @@ void BisectionPolynomial::Save()
    
 }
 
-void BisectionPolynomial::Calculate(){
+void Polynomial::Calculate(){
     if (CheckInput())
         return;
     
@@ -322,7 +322,7 @@ void BisectionPolynomial::Calculate(){
 
 }
 
-bool BisectionPolynomial::CheckInput(){
+bool Polynomial::CheckInput(){
   //Check if all coefficients are valid numbers
     for (int i = 0; i <= textCtrls.size() - 1; ++i)
     {

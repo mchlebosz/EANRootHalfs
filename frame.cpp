@@ -36,7 +36,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title)
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     // Add the scrollable panel to the main sizer
-    mainSizer->Add(new BisectionPolynomial(mainPanel), 1, wxEXPAND);
+    mainSizer->Add(new Polynomial(mainPanel), 1, wxEXPAND);
 
     mainPanel->SetSizerAndFit(mainSizer);
     Layout();

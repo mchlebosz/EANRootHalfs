@@ -5,7 +5,7 @@
 #include <wx/scrolwin.h>
 #include <vector>
 
-class BisectionPolynomial : public wxPanel
+class Polynomial : public wxPanel
 {
 private:
     wxScrolledWindow* scrollWindow;
@@ -48,9 +48,9 @@ public:
     void RemoveInputField();
     void Save();
     void Calculate();
-    BisectionPolynomial(wxWindow* parent);
+    Polynomial(wxWindow* parent);
 
-    ~BisectionPolynomial();
+    ~Polynomial();
 
 };
 
