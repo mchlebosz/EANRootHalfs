@@ -16,20 +16,28 @@ Bisection::Bisection(std::vector<double> coefficients, double a, double b,
 // f must be differentiable in (a, b)
 // f(a) and f(b) must not be 0
 // f must be monotonic in [a, b]
-double Bisection::solve() {
+double Bisection::solve(short * error_code) {
+	// check if error_code is nullptr
+	if (error_code == nullptr) {
+		std::cout << "error_code is nullptr" << std::endl;
+		return std::numeric_limits<double>::quiet_NaN();
+	}
 	// check if coefficients is empty
 	if (coefficients.empty()) {
-		std::cout << "coefficients is empty" << std::endl;
+		std::cout << "coefficients are empty" << std::endl;
+		*error_code = 1;
 		return std::numeric_limits<double>::quiet_NaN();
 	}
 	// check if epsilon is empty
 	if (epsilon == 0) {
 		std::cout << "epsilon is empty" << std::endl;
+		*error_code = 2;
 		return std::numeric_limits<double>::quiet_NaN();
 	}
 	// check if polynomial_degree is negative
 	if (coefficients.size() - 1 < 0) {
 		std::cout << "polynomial_degree must be non-negative" << std::endl;
+		*error_code = 3;
 		return std::numeric_limits<double>::quiet_NaN();
 	}
 	// check if a is greater than b
@@ -44,13 +52,16 @@ double Bisection::solve() {
 	std::cout << "f(b) = " << f(b) << std::endl;
 	if (f(a) * f(b) >= 0) {
 		std::cout << "f(a) and f(b) must have opposite signs" << std::endl;
+		*error_code = 4;
 		return std::numeric_limits<double>::quiet_NaN();
 	}
 	// check if f(a) and f(b) are 0
 	if (f(a) == 0) {
+		*error_code = 0;
 		return a;
 	}
 	if (f(b) == 0) {
+		*error_code = 0;
 		return b;
 	}
 
@@ -65,6 +76,7 @@ double Bisection::solve() {
 	while (true) {
 		double c = (a + b) / 2;
 		if (f(c) == 0) {
+			*error_code = 0;
 			return c;
 		}
 		if (f(a) * f(c) < 0) {
@@ -73,9 +85,11 @@ double Bisection::solve() {
 			a = c;
 		}
 		if (b - a < epsilon) {
+			*error_code = 0;
 			return c;
 		}
 	}
+
 }
 
 // setter

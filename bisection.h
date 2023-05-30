@@ -25,7 +25,7 @@ public:
 	// f must be differentiable in (a, b)
 	// f(a) and f(b) must not be 0
 	// f must be monotonic in [a, b]
-	double solve();
+	double solve(short * error_code);
 
 	// coefficients
 	void push_coefficient(double coefficient);
@@ -47,6 +47,9 @@ public:
 	double get_b();
 	int get_degree();
 
+	// f(x) = a_n * x^n + a_(n-1) * x^(n-1) + ... + a_1 * x + a_0
+	double f(double x);
+
 private:
 	std::vector<double> coefficients;
 	double a;          // left endpoint of the interval
@@ -54,8 +57,7 @@ private:
 	double epsilon;    // tolerance
 	double x;          // midpoint of the interval
 
-	// f(x) = a_n * x^n + a_(n-1) * x^(n-1) + ... + a_1 * x + a_0
-	double f(double x);
+	
 };
 
 #endif    // !BISECTION_H
