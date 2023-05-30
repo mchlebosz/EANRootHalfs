@@ -59,7 +59,7 @@ void MyFrame::OnHelp(wxCommandEvent &event)
 {
     //Open webpage with docs
     // open a URL in the default browser or web view
-    wxLaunchDefaultBrowser(wxT("https://www.example.com"));
+    wxLaunchDefaultBrowser(wxT("https://mchlebosz.github.io/EANRootHalfs/"));
   
 }
 
