@@ -1,0 +1,24 @@
+done - a i b warning , nie zamiana
+done - Wynik w formacie naukowy
+cant be - long double
+
+Interval:
+done- współczynniki rzeczywiste jako przed albo przedizały
+done - a i b tak samo
+
+ różnica między kolejnymi przybliżeniami prawego i lewego przedziału jest mniejsze od epsilona
+
+done - max liczba iteracja
+
+done - specjalna funkcja do wyświetlania:
+iendstostring
+
+done - szerokość przedziału przy wyniku
+
+dokumentacja tylko dla przedziałowych:
+Musi być:
+podany co najmniej 3 przykłady:
+dla danych rzecz
+dla przedzi
+dla zepsutych danych
+

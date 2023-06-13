@@ -15,13 +15,17 @@ public:
     void OnQuit(wxCommandEvent& event);
     void OnInfo(wxCommandEvent& event);
     void OnHelp(wxCommandEvent& event);
+    void OnCheckItem(wxCommandEvent& event);
 
     wxDECLARE_EVENT_TABLE();
 private:
+    Polynomial* polynomial ;
+    Polynomial* intervalPolynomial;
+    wxPanel* mainPanel;
+    wxBoxSizer* mainSizer;
+
     void OnClose(wxCloseEvent& event)
     {
-        // delete the frame object
-        Destroy();
     }
 };
 
