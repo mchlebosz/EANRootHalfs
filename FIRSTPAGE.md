@@ -85,6 +85,17 @@ interval_arithmetic::Interval<double> BisectionInterval::solve(
         *error_code = 2;
         return std::numeric_limits<interval_arithmetic::Interval<double>>::quiet_NaN();
     }
+    
+    
+    // Sprawdzenie, czy f(a) lub f(b) przechodzi przez zero
+    if (f(a).a * f(a).b < 0) {
+        *error_code = 0;
+        return a;
+    }
+    if (f(b).a * f(b).b < 0) {
+        *error_code = 0;
+        return b;
+    }
 
     // Sprawdzenie, czy f(a) i f(b) mają przeciwne znaki
     std::string leftInv;
@@ -103,16 +114,6 @@ interval_arithmetic::Interval<double> BisectionInterval::solve(
         std::cout << "f(a) and f(b) must have opposite signs" << std::endl;
         *error_code = 4;
         return std::numeric_limits<interval_arithmetic::Interval<double>>::quiet_NaN();
-    }
-
-    // Sprawdzenie, czy f(a) lub f(b) przechodzi przez zero
-    if (f(a).a * f(a).b < 0) {
-        *error_code = 0;
-        return a;
-    }
-    if (f(b).a * f(b).b < 0) {
-        *error_code = 0;
-        return b;
     }
 
     // Metoda bisekcji
